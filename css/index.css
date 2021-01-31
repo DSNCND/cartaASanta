@@ -131,3 +131,5 @@ button:hover {
 .oculto {
     display: none;
 }
+
+li {list-style-type: none; color: rgb(228, 85, 85);}

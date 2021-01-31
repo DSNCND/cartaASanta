@@ -1,6 +1,8 @@
 const $form = document.querySelector("#carta-a-santa");
 
 $form.onsubmit = validarFormulario;
+
+
 function validarFormulario(event)
 {
 //const $form = document.querySelector("#carta-a-santa")
@@ -22,10 +24,16 @@ const errores =
 {
     nombre : errorNombre,
     ciudad : errorCiudad,
-    descripcionRegalo : errorDescripcionRegalo
+    "descripcion-regalo" : errorDescripcionRegalo
 };
 
-manejarErrores(errores);
+const esExito = manejarErrores(errores) === 0;
+if(esExito)
+{
+    $form.classList.add("oculto")
+    document.querySelector("#exito").classList.remove("oculto");
+}
+
 
 event.preventDefault();
 
@@ -35,37 +43,66 @@ event.preventDefault();
 
 function manejarErrores(errores)
 {
-    errorNombre = errores.nombre // nombre
-    errorCiudad = errores.ciudad // ciudad
-    errorDescripcionRegalo = errores.descripcionRegalo //descripcionRegalo
+    const keys = Object.keys(errores);
+    const $errores = document.querySelector("#errores");
+    let cantidadErrores=0;
+    $errores.innerHTML = "";
+    keys.forEach
+    (
+        function(k)
+        {
+            const error = errores[k];
+            
+            if(error)
+            {
+                cantidadErrores++;
+                $form[k].classList.add("error");
+                //$form[k].className="error";
+                const $error = document.createElement("li");
+                $error.listStyleType="none"
+                $error.innerText = error;
+                $errores.appendChild($error);
+            }
+            else
+            { 
+                $form[k].classList.remove("error");
+                //$form[k].className="";
+            }
+        }
+    );
 
-    if(errorNombre)
-    {
-        $form.nombre.className="error";
-    }else
-    {
-        $form.nombre.className="";
-    }
+    //ctrl+k+c // // // // errorNombre = errores.nombre // nombre
+    // // // // // errorCiudad = errores.ciudad // ciudad
+    // // // // // errorDescripcionRegalo = errores.descripcionRegalo //descripcionRegalo
 
-    if(errorCiudad)
-    {
-        $form.ciudad.className="error";
-    }
-    else
-    {
-        $form.ciudad.className="";
-    }
+    // // // // // if(errorNombre)
+    // // // // // {
+    // // // // //     $form.nombre.className="error";
+    // // // // // }else
+    // // // // // {
+    // // // // //     $form.nombre.className="";
+    // // // // // }
 
-    if(errorDescripcionRegalo)
-    {
-        $form["descripcion-regalo"].className="error";
-    }
-    else
-    {
-        $form["descripcion-regalo"].className="";
-    }
+    // // // // // if(errorCiudad)
+    // // // // // {
+    // // // // //     $form.ciudad.className="error";
+    // // // // // }
+    // // // // // else
+    // // // // // {
+    // // // // //     $form.ciudad.className="";
+    // // // // // }
 
+    // // // // // if(errorDescripcionRegalo)
+    // // // // // {
+    // // // // //     $form["descripcion-regalo"].className="error";
+    // // // // // }
+    // // // // // else
+    // // // // // {
+    // // // // //     $form["descripcion-regalo"].className="";
+    // // // // // }
+    return cantidadErrores;
 }
+
 
 function validarNombre(nombre)
 {
@@ -107,7 +144,7 @@ function validarDescripcionRegalo(descripcionRegalo)
     {
         return "El campo descripcion no puede estar vacio"
     }
-    if(!/^[a-z 0-9]+$/i.test(descripcionRegalo))
+    if (!/^[a-z \r\n0-9]+$/i.test(descripcionRegalo))
     {
         return "no cumple el criterio, solo acepta numeros y letras"
     }
