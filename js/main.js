@@ -32,6 +32,13 @@ if(esExito)
 {
     $form.classList.add("oculto")
     document.querySelector("#exito").classList.remove("oculto");
+    setTimeout
+    (
+        ()=>
+        {
+            window.location.href ="wishlist.html"
+        },5000
+    )
 }
 
 
