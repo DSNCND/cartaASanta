@@ -12,11 +12,8 @@ function saveDataToLocalStorage()
                         (
                             {   
                                 username:nombre,
-                                giftDescrition:descripcion
+                                giftDescription:descripcion
                             }
                         ));
-                        console.log(localStorageIndex)
-                        console.log("++")
-                        
 
 }
