@@ -1,6 +1,20 @@
+
+if(localStorage.length==0)
+{
+    var localStorageIndex = 0;
+
+}
+localStorageIndex = localStorage.length;
+
+
+
 const $form = document.querySelector("#carta-a-santa");
 
-$form.onsubmit = validarFormulario;
+if($form)
+{
+    $form.onsubmit = validarFormulario;
+}
+
 
 
 function validarFormulario(event)
@@ -28,8 +42,11 @@ const errores =
 };
 
 const esExito = manejarErrores(errores) === 0;
+
 if(esExito)
 {
+    saveDataToLocalStorage();
+
     $form.classList.add("oculto")
     document.querySelector("#exito").classList.remove("oculto");
     setTimeout
@@ -40,12 +57,8 @@ if(esExito)
         },5000
     )
 }
-
-
 event.preventDefault();
-
 }
-
 
 
 function manejarErrores(errores)
