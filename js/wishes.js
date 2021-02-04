@@ -10,6 +10,7 @@ function mostrarDeseos()
         {
             let deseo = JSON.parse(localStorage.getItem(k));
             let li = document.createElement("li");
+            li.style.listStyleType="none"
             li.innerText=deseo.username+" desea ";
             li.innerText+=deseo.giftDescrition;
             
@@ -20,6 +21,7 @@ function mostrarDeseos()
 
 
 }
-console.log("deseos")
 
+console.log("deseos")
+// `onload="displayWishes()"` en el body
 mostrarDeseos()
