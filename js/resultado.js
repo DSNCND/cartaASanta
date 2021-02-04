@@ -1,9 +1,17 @@
 
+const listaDeImagenes = 
+{
+    1:"img/gifts/goldGift.jpg",
+    2:"img/gifts/groupGift.jpeg",
+    3:"img/gifts/redGift.jpg",
+}
+
+
 const comportamientos = 
 {
-    1:"muy_bueno",
-    2:"bueno",
-    3:"maso"
+    1:"MUY BUENO",
+    2:"BUENO",
+    3:"MASO"
 } 
 
 function comportamiento()
