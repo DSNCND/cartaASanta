@@ -12,7 +12,7 @@ function mostrarDeseos()
             let li = document.createElement("li");
             li.style.listStyleType="none"
             li.innerText=deseo.username+" desea ";
-            li.innerText+=deseo.giftDescrition;
+            li.innerText+=deseo.giftDescription;
             
             listaDeDeseos.append(li);
         }
@@ -22,6 +22,5 @@ function mostrarDeseos()
 
 }
 
-console.log("deseos")
 // `onload="displayWishes()"` en el body
 mostrarDeseos()
